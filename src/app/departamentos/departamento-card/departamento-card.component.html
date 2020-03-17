@@ -1,0 +1,17 @@
+<div class="card border-info" style="width: 18rem;">
+    <div class="card-header text-white bg-info mb-3">{{ departamento.edificio['nombre'] }}</div>
+    <img *ngIf="imagen" src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ departamento.nombre }}</h5>
+        <p class="card-text">{{ departamento.estado }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Inquilino : {{ departamento.inquilino }}</li>
+        <li class="list-group-item">Propietario : {{ departamento.propietario }}</li>
+        <li class="list-group-item">Cantidad de Habitaciones : {{ departamento.cantidadHabitaciones }}</li>
+    </ul>
+    <div class="card-body">
+        <button type="button" class="btn btn-outline-primary btn-block" (click)="verMas(id)">Ver mas..</button>
+        <button type="button" class="btn btn-outline-danger btn-block">Eliminar</button>
+    </div>
+</div>

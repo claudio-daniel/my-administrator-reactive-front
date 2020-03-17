@@ -1,0 +1,19 @@
+<h2>MIS Edificios</h2>
+<div class="card-group animated fadeIn">
+  <mat-card class="card m-card ">
+    <ul class="heroes border-info">
+      <li *ngFor="let edificio of edificios"
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(edificio)">
+        <span class="badge">{{edificio.id}}</span> {{edificio.nombre}}
+      </li>
+    </ul>
+</mat-card>
+
+  <mat-card *ngIf="mostrarTarjeta || selectedEdificio" class="card m-card animated fadeIn fast">
+    <app-edificio-card class="animated fadeIn" (edificioSeleccionado)="ocultarCardEdificio($event.value)" [edificio]= "selectedEdificio"></app-edificio-card>
+  </mat-card>
+</div>
+
+
+

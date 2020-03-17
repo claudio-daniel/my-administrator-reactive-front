@@ -1,0 +1,12 @@
+<div class="animated fadeIn" *ngIf="edificio">
+    <h2>{{edificio.nombre | uppercase}} Details</h2>
+    <div><span>id: </span>{{edificio.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="edificio.nombre" placeholder="nombre"/>
+      </label>
+    </div>
+    <div>
+        <button  class="btn btn-secondary" (click)="ocultarEdificio()">Ocultar</button>
+    </div>
+</div>
