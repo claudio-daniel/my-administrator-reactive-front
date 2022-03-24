@@ -1,62 +1,69 @@
-<ul class="alert alert-danger animated fadeIn fast" *ngIf="errores?.length > 0">
+<ul class="alert alert-danger animated fadeIn fast" *ngIf="errores.length > 0">
   <li *ngFor="let err of errores">
     {{err}}
   </li>
 </ul>
 
 <mat-card class="card border-primary mb-3 animated fadeIn fast">
-          <div class="card-header"><h3 class="text-center font-weight-light my-4">{{ titulo }}</h3></div>
-              <form #inquilinoForm="ngForm">
-                  <div class="form-row">
-                      <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="small mb-1" for="nombre">Nombre</label>
-                                <input class="form-control py-4" [(ngModel)]="inquilino.nombre" name="nombre" required minlength="4" #nombre="ngModel" placeholder="ingrese nombre">
-                                <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"> 
-                                  <div *ngIf="nombre.errors.required">
-                                     Nombre es requerido 
-                                  </div>
-                                  <div *ngIf="nombre.errors.minlength">
-                                    Nombre debe tener al menos cuatro caracteres
-                                 </div>
-                                </div>
-                            </div>
-                        </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label class="small mb-1" for="apellido">Apellido</label>
-                              <input class="form-control py-4" [(ngModel)]="inquilino.apellido" name="apellido" required minlength="4" #apellido="ngModel" placeholder="ingrese apellido">
-                              <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"> 
-                                <div *ngIf="apellido.errors.required">
-                                   Apellido es requerido 
-                                </div>
-                                <div *ngIf="apellido.errors.minlength">
-                                  Apellido debe tener al menos cuatro caracteres
-                               </div>
-                               </div>
-                          </div>
-                      </div>
-                  </div>
+  <div class="card-header">
+    <h3 class="text-center font-weight-light my-4">{{ titulo }}</h3>
+  </div>
+  <form #inquilinoForm="ngForm">
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="small mb-1" for="nombre">Nombre</label>
+          <input class="form-control py-4" [(ngModel)]="inquilino.nombre" name="nombre" required minlength="4"
+            #nombre="ngModel" placeholder="ingrese nombre">
+          <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors?.required">
+              Nombre es requerido
+            </div>
+            <div *ngIf="nombre.errors?.minlength">
+              Nombre debe tener al menos cuatro caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="small mb-1" for="apellido">Apellido</label>
+          <input class="form-control py-4" [(ngModel)]="inquilino.apellido" name="apellido" required minlength="4"
+            #apellido="ngModel" placeholder="ingrese apellido">
+          <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+            <div *ngIf="apellido.errors?.required">
+              Apellido es requerido
+            </div>
+            <div *ngIf="apellido.errors?.minlength">
+              Apellido debe tener al menos cuatro caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                  <div class="form-group">
-                      <label class="small mb-1" for="email">email</label>
-                      <input class="form-control py-4" type="email" aria-describedby="emailHelp" placeholder="ingrese email"[(ngModel)]="inquilino.email" name="email" required email #email="ngModel">
-                      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)"> 
-                        <div *ngIf="email.errors.required">
-                           Email es requerido 
-                        </div>
-                        <div *ngIf="nombre.errors.email">
-                          Formato de email invalido
-                        </div>
-                      </div>
-                  </div>
-                  <div class="form-group mt-4 mb-0"  >
-                    <div class="card border-secondary">
-                      <button class="btn btn-primary btn-block" role="button" (click)='crear()' [disabled]="!inquilinoForm.form.valid" *ngIf="!inquilino.id else elseBlock" >Crear</button>
-                      <ng-template #elseBlock>
-                        <button class="btn btn-primary btn-block" role="button" (click)='actualizar()' [disabled]="!inquilinoForm.form.valid">Actualizar</button>
-                      </ng-template>
-                    </div>
-                  </div>
-              </form>
+    <div class="form-group">
+      <label class="small mb-1" for="email">email</label>
+      <input class="form-control py-4" type="email" aria-describedby="emailHelp" placeholder="ingrese email"
+        [(ngModel)]="inquilino.email" name="email" required email #email="ngModel">
+      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.required">
+          Email es requerido
+        </div>
+        <div *ngIf="nombre.errors?.email">
+          Formato de email invalido
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-4 mb-0">
+      <div class="card border-secondary">
+        <button class="btn btn-primary btn-block" role="button" (click)='crear()' [disabled]="!inquilinoForm.form.valid"
+          *ngIf="!inquilino.id else elseBlock">Crear</button>
+        <ng-template #elseBlock>
+          <button class="btn btn-primary btn-block" role="button" (click)='actualizar()'
+            [disabled]="!inquilinoForm.form.valid">Actualizar</button>
+        </ng-template>
+      </div>
+    </div>
+  </form>
 </mat-card>

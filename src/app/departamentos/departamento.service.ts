@@ -2,7 +2,7 @@ import { Departamento } from './departamento';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders} from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
@@ -12,21 +12,21 @@ import { formatDate } from '@angular/common';
 })
 export class DepartamentoService {
 
-  private urlEndPoint = 'http://localhost:8081/my_administration/departaments';
+  private urlEndPoint = 'http://localhost:8080/my_administration/departments';
 
-  private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http : HttpClient, private route : Router) { }
+  constructor(private http: HttpClient, private route: Router) { }
 
-  getDepartamentos(): Observable<Departamento[]>{
+  getDepartamentos(): Observable<Departamento[]> {
     return this.http.get(this.urlEndPoint).pipe(
       map(response => {
-        let departamentos = response['departamentos'] as Departamento[]
+        let departamentos = response as Departamento[]
 
-        return departamentos.map( departamento => {
-          departamento.nombre = departamento.nombre.toUpperCase();
-          departamento.inquilino = departamento.inquilino != null ? departamento.inquilino['nombre'] : 'Disponible';
-          departamento.propietario = departamento.propietario['nombre'];
+        return departamentos.map(departamento => {
+          departamento.name = departamento.name.toUpperCase();
+          departamento.renter = departamento.renter != null ? departamento.renter['name'] : 'Disponible';
+          //departamento.propietary = departamento.propietary['nombre'];
           return departamento;
         })
       })
@@ -46,30 +46,30 @@ export class DepartamentoService {
   //  );
   //}
 
-  getDepartamento(id: number): Observable<Departamento>{
-    
+  getDepartamento(id: number): Observable<Departamento> {
+
     return this.http.get<Departamento>(`${this.urlEndPoint}/${id}`).pipe(
-      catchError(e =>{
+      catchError(e => {
         this.route.navigate(['/departamentos']);
         console.error(e.error.mensaje);
         swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
-     })
+      })
     );
   }
 
   buscarDepartamento(termino: string) {
-    let departamentos: Departamento[] 
+    let departamentos: Departamento[] = []
     //= this.getDepartamentos().subscribe(
-      //json => departamentos = json
+    //json => departamentos = json
     //);
     let departamentosArr: Departamento[] = [];
     termino = termino.toLowerCase();
 
-    for(let departamento of departamentos ){
-      let nombre = departamento.nombre.toLowerCase();
-      if(nombre.indexOf( termino ) >= 0 ){
-        departamentosArr.push( departamento );
+    for (let departamento of departamentos) {
+      let nombre = departamento.name.toLowerCase();
+      if (nombre.indexOf(termino) >= 0) {
+        departamentosArr.push(departamento);
       }
     }
 
@@ -77,29 +77,29 @@ export class DepartamentoService {
 
   }
 
-//  actualizarInquilino(inquilino : Inquilino): Observable<any>{
-    
-//    return this.http.put<Inquilino>(`${this.urlEndPointCrear}/${inquilino.id}`, inquilino , {headers : this.httpHeaders}).pipe(
-//      catchError(e =>{
-//        if(e.status == 400){
-//          return throwError(e);
-//        }
-//        console.error(e.error.mensaje);
-//        swal.fire('Error al actualizar', e.error.mensaje, 'error');
-//        return throwError(e);
-//      })
-//    );
-//  }
+  //  actualizarInquilino(inquilino : Inquilino): Observable<any>{
 
-//  eliminarCliente(id : number): Observable<any>{
-//    return this.http.delete<Inquilino>(`${this.urlEndPointEliminar}/${id}` , {headers : this.httpHeaders}).pipe(
-//      catchError(e =>{
-//        console.error(e.error.mensaje);
-//        swal.fire('Error al eliminar', e.error.mensaje, 'error');
-//        return throwError(e);
-//      })
-//    );
-//  }
+  //    return this.http.put<Inquilino>(`${this.urlEndPointCrear}/${inquilino.id}`, inquilino , {headers : this.httpHeaders}).pipe(
+  //      catchError(e =>{
+  //        if(e.status == 400){
+  //          return throwError(e);
+  //        }
+  //        console.error(e.error.mensaje);
+  //        swal.fire('Error al actualizar', e.error.mensaje, 'error');
+  //        return throwError(e);
+  //      })
+  //    );
+  //  }
+
+  //  eliminarCliente(id : number): Observable<any>{
+  //    return this.http.delete<Inquilino>(`${this.urlEndPointEliminar}/${id}` , {headers : this.httpHeaders}).pipe(
+  //      catchError(e =>{
+  //        console.error(e.error.mensaje);
+  //        swal.fire('Error al eliminar', e.error.mensaje, 'error');
+  //        return throwError(e);
+  //      })
+  //    );
+  //  }
 
 
 }

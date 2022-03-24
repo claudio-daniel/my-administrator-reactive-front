@@ -12,12 +12,14 @@ import { Router } from '@angular/router';
 })
 export class InquilinosComponent implements OnInit {
 
-  inquilinos: Inquilino[];
+  inquilinos: Inquilino[] = [];
   inquilinoSelect: Inquilino;
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'email', 'actions'];
+  selectedHero: any;
+  hero: any;
 
   constructor(private inquilinoService: InquilinoService,
-              private route: Router) { }
+    private route: Router) { }
 
   ngOnInit() {
     this.inquilinoService.getInquilinos().subscribe(
@@ -36,7 +38,7 @@ export class InquilinosComponent implements OnInit {
 
     swalWithBootstrapButtons.fire({
       title: '¿está seguro?',
-      text: `se eliminaran los datos del inquilino ${inquilino.nombre} ${inquilino.apellido}!` ,
+      text: `se eliminaran los datos del inquilino ${inquilino.nombre} ${inquilino.apellido}!`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar!',
@@ -54,13 +56,13 @@ export class InquilinosComponent implements OnInit {
       } else if (result.dismiss === swal.DismissReason.cancel) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          `el inquilino ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`, 
+          `el inquilino ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`,
           'error');
-        }
+      }
     });
   }
 
-  onSelect(inquilino: Inquilino){
+  onSelect(inquilino: Inquilino) {
     this.route.navigate(['/inquilinos/form', inquilino.id]);
   }
 }

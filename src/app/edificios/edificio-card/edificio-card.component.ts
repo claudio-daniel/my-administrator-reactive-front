@@ -19,7 +19,7 @@ export class EdificioCardComponent implements OnInit {
   }
 
   ocultarEdificio(){
-    this.edificio = null;
+    this.edificio = new Edificio;
     this.edificioSeleccionado.emit(false);
   }
 

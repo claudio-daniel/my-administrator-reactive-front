@@ -1,7 +1,8 @@
 export class Departamento {
-    id:number;
-    nombre:string;
-    propietario:any;
-    inquilino:any;
-    cantidadHabitaciones:number;
+    id: number;
+    name: string;
+    propietary: any;
+    renter: any;
+    quantityRooms: number;
+    status: string
 }

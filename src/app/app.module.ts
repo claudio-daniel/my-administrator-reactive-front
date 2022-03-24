@@ -4,10 +4,14 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 
-import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
-import { MatCardModule, MatInputModule} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,13 +31,13 @@ import { EdificioCardComponent } from './edificios/edificio-card/edificio-card.c
 registerLocaleData(localeEs, 'es-AR');
 
 const routes: Routes = [
-  {path: '', redirectTo: '/inquilinos', pathMatch: 'full'},
-  {path: 'inquilinos', component : InquilinosComponent},
-  {path: 'inquilinos/form', component : FormComponent},
-  {path: 'inquilinos/form/:id', component : FormComponent},
-  {path: 'departamentos', component : DepartamentosComponent},
-  {path: 'departamento/:id', component: DepartamentoComponent},
-  {path: 'edificios', component: EdificiosComponent}
+  { path: '', redirectTo: '/inquilinos', pathMatch: 'full' },
+  { path: 'inquilinos', component: InquilinosComponent },
+  { path: 'inquilinos/form', component: FormComponent },
+  { path: 'inquilinos/form/:id', component: FormComponent },
+  { path: 'departamentos', component: DepartamentosComponent },
+  { path: 'departamento/:id', component: DepartamentoComponent },
+  { path: 'edificios', component: EdificiosComponent }
 ]
 
 @NgModule({
@@ -64,7 +68,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatCardModule
   ],
-  providers: [InquilinoService, {provide: LOCALE_ID, useValue: 'es-AR' }],
+  providers: [InquilinoService, { provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

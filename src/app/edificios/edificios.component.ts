@@ -11,6 +11,8 @@ export class EdificiosComponent implements OnInit {
   edificios = EDIFICIOS;
   selectedEdificio: Edificio;
   mostrarTarjeta = false;
+  hero: any;
+  selectedHero: any;
 
   constructor() { }
 
@@ -22,7 +24,7 @@ export class EdificiosComponent implements OnInit {
   }
 
   ocultarCardEdificio(mostrar: boolean) {
-    this.selectedEdificio = null;
+    this.selectedEdificio = new Edificio;
     this.mostrarTarjeta = mostrar;
   }
 }

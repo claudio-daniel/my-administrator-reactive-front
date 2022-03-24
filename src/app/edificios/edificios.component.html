@@ -11,7 +11,7 @@
 </mat-card>
 
   <mat-card *ngIf="mostrarTarjeta || selectedEdificio" class="card m-card animated fadeIn fast">
-    <app-edificio-card class="animated fadeIn" (edificioSeleccionado)="ocultarCardEdificio($event.value)" [edificio]= "selectedEdificio"></app-edificio-card>
+    <app-edificio-card class="animated fadeIn" (edificioSeleccionado)="ocultarCardEdificio($event)" [edificio]= "selectedEdificio"></app-edificio-card>
   </mat-card>
 </div>
 

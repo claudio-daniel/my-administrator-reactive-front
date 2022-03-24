@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Departamento } from '../departamento';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +10,9 @@ export class DepartamentoCardComponent implements OnInit {
 
   @Input() departamento: any = {};
 
-  constructor( private router: Router) { }
+  imagen: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

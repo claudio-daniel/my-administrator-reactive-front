@@ -1,17 +1,19 @@
-<div class="card border-primary mb-3 animated fadeIn fast" >
+<div class="card border-primary mb-3 animated fadeIn fast">
   <div class="card-header">Inquilinos</div>
   <div class="card-body text-primary">
     <h5 class="card-title">Inquilinos Registrados</h5>
     <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/inquilinos/form']">Registrar Inquilino</button>
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/inquilinos/form']">Registrar
+        Inquilino</button>
     </div>
-    
+
     <div class="alert alert-info" *ngIf="inquilinos?.length==0">
-      No hay inquilinos registrados 
+      No hay inquilinos registrados
     </div>
-    
-    <table mat-table class=" thead-black table table-bordered table-striped" [dataSource]="inquilinos" *ngIf="inquilinos?.length>0">
-      
+
+    <table mat-table class=" thead-black table table-bordered table-striped" [dataSource]="inquilinos"
+      *ngIf="inquilinos.length>0">
+
       <ng-container matColumnDef="id" [class.selected]="hero === selectedHero">
         <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
         <mat-cell *matCellDef="let inquilino"> {{inquilino.id}} </mat-cell>
@@ -33,13 +35,15 @@
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <mat-header-cell  *matHeaderCellDef > :) </mat-header-cell>
-        <mat-cell *matCellDef="let row" >
-           <button mat-button type="button" style="margin-right: 25px; margin-left: 25px;" name="editar" (click)="onSelect(row)" class="btn btn-primary btn-sm">editar</button>
-           <button mat-button type="button" name="eliminar" (click)='eliminar(row)' class="btn btn-danger btn-sm">eliminar</button>
+        <mat-header-cell *matHeaderCellDef> :) </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-button type="button" style="margin-right: 25px; margin-left: 25px;" name="editar"
+            (click)="onSelect(row)" class="btn btn-primary btn-sm">editar</button>
+          <button mat-button type="button" name="eliminar" (click)='eliminar(row)'
+            class="btn btn-danger btn-sm">eliminar</button>
         </mat-cell>
-      </ng-container> 
-    
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
@@ -53,7 +57,7 @@
   <div><span>id: </span>{{inquilinoSelect.id}}</div>
   <div>
     <label>name:
-      <input [(ngModel)]="inquilinoSelect.nombre" placeholder="name"/>
+      <input [(ngModel)]="inquilinoSelect.nombre" placeholder="name" />
     </label>
   </div>
 
